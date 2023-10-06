@@ -1,9 +1,11 @@
-import React from 'react'
+import { Fragment } from 'react'
+import MovieListing from '../MovieListing/MovieListing';
 
 const Home = () => {
   return (
     <div>
-      home
+      <div className='banner-img'></div>
+      <MovieListing />
     </div>
   )
 }
