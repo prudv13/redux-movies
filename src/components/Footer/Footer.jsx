@@ -1,9 +1,10 @@
-import React from 'react'
+import './Footer.scss';
 
 const Footer = () => {
   return (
-    <div>
-      footer
+    <div className='footer'>
+      <div>Redux Movies</div>
+      <div>@2023 ReduxMovies, Inc. or its affiliates</div>
     </div>
   )
 }
