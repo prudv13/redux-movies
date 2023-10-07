@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import './MovieDetails.scss'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { fetchAsyncMovieOrShowDetail, getSelectedMovieOrSlice } from '../../features/movies/movieSlice';
+import { fetchAsyncMovieOrShowDetail, getSelectedMovieOrSlice, removeSelectedMovieOrShow } from '../../features/movies/movieSlice';
 
 const MovieDetails = () => {
 
@@ -13,10 +13,21 @@ const MovieDetails = () => {
 
   useEffect(() => {
     dispatach(fetchAsyncMovieOrShowDetail(imdbID));
+
+    return () => {
+      dispatach(removeSelectedMovieOrShow());
+    }
   }, [dispatach, imdbID]);
 
   return (
     <div className='movie-section'>
+    {
+      Object.keys(data).length === 0 ?
+      <div>
+        <h2>Loading...</h2>
+      </div>
+      :
+      <Fragment>
       <div className='section-left'>
         <div className='movie-title'>{data.Title}</div>
         <div className='movie-rating'>
@@ -65,6 +76,8 @@ const MovieDetails = () => {
       <div className='section-right'>
         <img src={data.Poster} alt={data.Title} />
       </div>
+      </Fragment>
+    }
     </div>
   )
 }
