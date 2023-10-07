@@ -7,11 +7,10 @@ import './MovieListing.scss';
 const MovieListing = () => {
   const movies = useSelector(getAllMovies);
   let renderMovies = "";
-
   renderMovies = movies.Response === "True" ?
   (
     movies.Search.map((movie, index) => {
-      <MovieCard key={index} data={movie} />
+      return <MovieCard key={index} data={movie} />
     })
   ) :
   (
@@ -20,6 +19,7 @@ const MovieListing = () => {
     </div>
     )
   console.log(movies);
+  console.log(renderMovies);
   return (
     <div className='movie-wrapper'>
       <div className='movie-list'>
